@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Товар</title>
+  <style>
+    body {
+      background-color: #0e0e10;
+      color: #fff;
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .product-card {
+      background: #1b1b1e;
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    h2 {
+      margin: 0;
+    }
+
+    .size, .price {
+      font-size: 16px;
+      color: #bbb;
+    }
+
+    .price {
+      color: #00FFB3;
+      font-weight: 600;
+    }
+
+    .description {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .back {
+      margin-top: 20px;
+      color: #00bfff;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="product-card" id="productDetail"></div>
+  <div class="back" onclick="history.back()">← Вернуться к каталогу</div>
+
+  <script>
+    const products = [
+      {id: 1, name: "Куртка зимняя", size: "M / L / XL", price: "4 500 ₴", image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f", description: "Теплая зимняя куртка для холодной погоды."},
+      {id: 2, name: "Кроссовки Nike", size: "42 / 43 / 44", price: "7 200 ₴", image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f", description: "Стильные и удобные кроссовки для спорта и повседневной носки."},
+      {id: 3, name: "Джинсы Levi’s", size: "30 / 31 / 32 / 33", price: "5 900 ₴", image: "https://images.unsplash.com/photo-1584378868072-2d1b1b37d3f4", description: "Классические джинсы с комфортной посадкой."},
+      {id: 4, name: "Футболка Adidas", size: "S / M / L / XL", price: "2 200 ₴", image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b", description: "Легкая футболка для спорта и отдыха."},
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    const product = products.find(p => p.id === id);
+
+    if (product) {
+      document.getElementById('productDetail').innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <h2>${product.name}</h2>
+        <div class="size">Размер: ${product.size}</div>
+        <div class="price">Цена: ${product.price}</div>
+        <div class="description">${product.description}</div>
+      `;
+    } else {
+      document.getElementById('productDetail').innerHTML = `<p>Товар не найден</p>`;
+    }
+  </script>
+</body>
+</html>

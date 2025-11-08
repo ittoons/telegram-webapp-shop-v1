@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Каталог товаров</title>
+  <style>
+    body {
+      background-color: #0e0e10;
+      color: #fff;
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .card {
+      background: #1b1b1e;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .info {
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #bbb;
+    }
+
+    .price {
+      color: #00FFB3;
+      font-weight: 600;
+      font-size: 16px;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛍 Каталог товаров</h1>
+
+  <div class="grid" id="productGrid"></div>
+
+  <script>
+    const products = [
+      {name: "Куртка зимняя", size: "M / L / XL", price: "₽4 500", image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f"},
+      {name: "Кроссовки Nike", size: "42 / 43 / 44", price: "₽7 200", image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f"},
+      {name: "Джинсы Levi’s", size: "30 / 31 / 32 / 33", price: "₽5 900", image: "https://images.unsplash.com/photo-1584378868072-2d1b1b37d3f4"},
+      {name: "Футболка Adidas", size: "S / M / L / XL", price: "₽2 200", image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b"},
+    ];
+
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = products.map(p => `
+      <div class="card">
+        <img src="${p.image}" alt="${p.name}">
+        <div class="info">
+          <div class="row">
+            <span>${p.name}</span>
+            <span>${p.size}</span>
+          </div>
+          <div class="price">${p.price}</div>
+        </div>
+      </div>
+    `).join('');
+  </script>
+</body>
+</html>

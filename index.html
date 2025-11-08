@@ -36,6 +36,7 @@
       display: flex;
       flex-direction: column;
       transition: transform 0.2s;
+      cursor: pointer;
     }
 
     .card:hover {
@@ -78,15 +79,15 @@
 
   <script>
     const products = [
-      {name: "Куртка зимняя", size: "M / L / XL", price: "₽4 500", image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f"},
-      {name: "Кроссовки Nike", size: "42 / 43 / 44", price: "₽7 200", image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f"},
-      {name: "Джинсы Levi’s", size: "30 / 31 / 32 / 33", price: "₽5 900", image: "https://images.unsplash.com/photo-1584378868072-2d1b1b37d3f4"},
-      {name: "Футболка Adidas", size: "S / M / L / XL", price: "₽2 200", image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b"},
+      {id: 1, name: "Куртка зимняя", size: "M / L / XL", price: "4 500 ₴", image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f", description: "Теплая зимняя куртка для холодной погоды."},
+      {id: 2, name: "Кроссовки Nike", size: "42 / 43 / 44", price: "7 200 ₴", image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f", description: "Стильные и удобные кроссовки для спорта и повседневной носки."},
+      {id: 3, name: "Джинсы Levi’s", size: "30 / 31 / 32 / 33", price: "5 900 ₴", image: "https://images.unsplash.com/photo-1584378868072-2d1b1b37d3f4", description: "Классические джинсы с комфортной посадкой."},
+      {id: 4, name: "Футболка Adidas", size: "S / M / L / XL", price: "2 200 ₴", image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b", description: "Легкая футболка для спорта и отдыха."},
     ];
 
     const grid = document.getElementById('productGrid');
     grid.innerHTML = products.map(p => `
-      <div class="card">
+      <div class="card" onclick="location.href='product.html?id=${p.id}'">
         <img src="${p.image}" alt="${p.name}">
         <div class="info">
           <div class="row">
